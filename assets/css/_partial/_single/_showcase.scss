@@ -20,9 +20,6 @@ $showcase-hover-color-black: #ffffff;
     [theme="dark"] & {
         background: $showcase-background-color-dark;
     }
-    [theme="black"] & {
-        background: $showcase-background-color-black;
-    }
 }
 
 .column-1 {
@@ -77,12 +74,6 @@ $showcase-hover-color-black: #ffffff;
         color: $showcase-color-dark;
         &:hover {
             color: $showcase-hover-color-dark;
-        }
-    }
-    [theme="black"] & {
-        color: $showcase-color-black;
-        &:hover {
-            color: $showcase-hover-color-black;
         }
     }
 }

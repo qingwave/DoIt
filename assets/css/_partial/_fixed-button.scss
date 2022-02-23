@@ -34,21 +34,9 @@
       color: $global-font-color-dark;
     }
   }
-  [theme=black] & {
-    color: $global-font-secondary-color-black;
-    background: $header-background-color-black;
-
-    &:hover, &:active {
-      color: $global-font-color-black;
-    }
-  }
 }
 
 #back-to-top-button {
   display: block;
-  bottom: 4.5rem;
-}
-
-#view-comments {
   bottom: 1.5rem;
 }

@@ -15,9 +15,6 @@
       [theme=dark] & {
         background: darken($code-background-color-dark, 6%);
       }
-      [theme=black] & {
-        background: darken($code-background-color-black, 6%);
-      }
     }
   
     .series-content {
@@ -31,9 +28,6 @@
   
       [theme=dark] & {
         background-color: $code-background-color-dark;
-      }
-      [theme=black] & {
-        background-color: $code-background-color-black;
       }
       ul {
         text-indent: -0.85rem;
@@ -49,9 +43,6 @@
           [theme=dark] & {
             color: $single-link-color-dark;
           }
-          [theme=black] & {
-            color: $single-link-color-black;
-          }
         }
         span.active {
             &:first-child::before {
@@ -63,18 +54,12 @@
             [theme=dark] & {
               color: $single-link-color-dark;
             }
-            [theme=black] & {
-              color: $single-link-color-black;
-            }
       
             &::before {
               color: $single-link-hover-color;
       
               [theme=dark] & {
                 color: $single-link-hover-color-dark;
-              }
-              [theme=black] & {
-                color: $single-link-hover-color-black;
               }
             }
           }
@@ -89,9 +74,6 @@
     
           [theme=dark] & {
             background: darken($code-background-color-dark, 3%);
-          }
-          [theme=black] & {
-            background: darken($code-background-color-black, 3%);
           }
         }
       }

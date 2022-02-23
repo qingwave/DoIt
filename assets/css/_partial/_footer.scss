@@ -3,7 +3,18 @@ footer {
   width: 100%;
   text-align: center;
   line-height: 1.25rem;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
+  color: $footer-color;
+  a {
+    color: $footer-color;
+  }
+
+  [theme=dark] & {
+    color: $footer-color-dark;
+    a {
+      color: $footer-color-dark;
+    }
+  }
 
   .footer-container {
     font-size: .875rem;

@@ -18,9 +18,6 @@
     [theme=dark] & {
       color: $global-font-secondary-color-dark;
     }
-    [theme=black] & {
-      color: $global-font-secondary-color-black;
-    }
   }
 
   li {
@@ -41,9 +38,6 @@
     [theme=dark] &:hover a {
       color: $pagination-link-hover-color-dark;
     }
-    [theme=black] &:hover a {
-      color: $pagination-link-hover-color-black;
-    }
 
     &:before,
     &:after {
@@ -59,10 +53,6 @@
     [theme=dark] &:before,
     [theme=dark] &:after {
       background: $pagination-link-hover-color-dark;
-    }
-    [theme=black] &:before,
-    [theme=black] &:after {
-      background: $pagination-link-hover-color-black;
     }
 
     &:before .active,
@@ -93,9 +83,6 @@
 
       [theme=dark] & a {
         color: $pagination-link-hover-color-dark;
-      }
-      [theme=black] & a {
-        color: $pagination-link-hover-color-black;
       }
 
       &:before,

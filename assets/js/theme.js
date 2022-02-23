@@ -92,8 +92,6 @@ function initSwitchTheme () {
         window.isDark = !(theme === 'light')
       }
       if (currentTheme === 'dark') {
-        setColorTheme('black')
-      } else if (currentTheme === 'black') {
         setColorTheme('light')
       } else {
         setColorTheme('dark')
@@ -491,7 +489,7 @@ function initHighlight () {
     const $tr = document.createElement('tr')
     $tbody.appendChild($tr)
     const $td = document.createElement('td')
-    $tr.appendChild($td)
+    $tr.appendChild($td)``
     $preChroma.parentElement.replaceChild($chroma, $preChroma)
     $td.appendChild($preChroma)
   })
@@ -499,15 +497,15 @@ function initHighlight () {
     const $codeElements = $chroma.querySelectorAll('pre.chroma > code')
     if ($codeElements.length) {
       const $code = $codeElements[$codeElements.length - 1]
-      const $header = document.createElement('div')
-      $header.className = 'code-header ' + $code.className.toLowerCase()
-      const $title = document.createElement('span')
-      $title.classList.add('code-title')
-      $title.insertAdjacentHTML('afterbegin', '<i class="arrow fas fa-chevron-right fa-fw"></i>')
-      $title.addEventListener('click', () => {
-        $chroma.classList.toggle('open')
-      }, false)
-      $header.appendChild($title)
+      // const $header = document.createElement('div')
+      // $header.className = 'code-header ' + $code.className.toLowerCase()
+      // const $title = document.createElement('span')
+      // $title.classList.add('code-title')
+      // $title.insertAdjacentHTML('afterbegin', '<i class="arrow fas fa-chevron-right fa-fw"></i>')
+      // $title.addEventListener('click', () => {
+      //   $chroma.classList.toggle('open')
+      // }, false)
+      // $header.appendChild($title)
       const $ellipses = document.createElement('span')
       $ellipses.insertAdjacentHTML('afterbegin', '<i class="fas fa-ellipsis-h fa-fw"></i>')
       $ellipses.classList.add('ellipses')
@@ -515,24 +513,24 @@ function initHighlight () {
         $chroma.classList.add('open')
       }, false)
       $header.appendChild($ellipses)
-      const $copy = document.createElement('span')
-      $copy.insertAdjacentHTML('afterbegin', '<i class="far fa-copy fa-fw"></i>')
-      $copy.classList.add('copy')
+      // const $copy = document.createElement('span')
+      // $copy.insertAdjacentHTML('afterbegin', '<i class="far fa-copy fa-fw"></i>')
+      // $copy.classList.add('copy')
       const code = $code.innerText
       if (window.config.code.maxShownLines < 0 || code.split('\n').length < window.config.code.maxShownLines + 2) $chroma.classList.add('open')
-      if (window.config.code.copyTitle) {
-        $copy.setAttribute('data-clipboard-text', code)
-        $copy.title = window.config.code.copyTitle
-        const clipboard = new ClipboardJS($copy)
-        clipboard.on('success', _e => {
-          animateCSS($code, 'animate__flash')
-          $copy.firstElementChild.className = 'fas fa-check fa-fw'
-          setTimeout(() => {
-            $copy.firstElementChild.className = 'far fa-copy fa-fw'
-          }, 3000)
-        })
-        $header.appendChild($copy)
-      }
+      // if (window.config.code.copyTitle) {
+      //   $copy.setAttribute('data-clipboard-text', code)
+      //   $copy.title = window.config.code.copyTitle
+      //   const clipboard = new ClipboardJS($copy)
+      //   clipboard.on('success', _e => {
+      //     animateCSS($code, 'animate__flash')
+      //     $copy.firstElementChild.className = 'fas fa-check fa-fw'
+      //     setTimeout(() => {
+      //       $copy.firstElementChild.className = 'far fa-copy fa-fw'
+      //     }, 3000)
+      //   })
+      //   $header.appendChild($copy)
+      // }
       $chroma.insertBefore($header, $chroma.firstChild)
     }
   })
@@ -737,7 +735,6 @@ function initMeta () {
   const metaColors = {
     light: '#f8f8f8',
     dark: '#252627',
-    black: '#000000'
   }
   window._metaThemeColorOnSwitchTheme = () => {
     themeColorMeta.content = metaColors[document.body.getAttribute('theme')]
@@ -748,15 +745,15 @@ function initMeta () {
 
 function onScroll () {
   const $headers = []
-  const $viewComments = document.getElementById('view-comments')
+  // const $viewComments = document.getElementById('view-comments')
   if (document.body.getAttribute('header-desktop') === 'auto') $headers.push(document.getElementById('header-desktop'))
   if (document.body.getAttribute('header-mobile') === 'auto') $headers.push(document.getElementById('header-mobile'))
-  if (document.getElementById('comments')) {
-    $viewComments.href = '#comments'
-    $viewComments.style.display = 'block'
-  } else {
-    $viewComments.style.display = 'null'
-  }
+  // if (document.getElementById('comments')) {
+  //   $viewComments.href = '#comments'
+  //   $viewComments.style.display = 'block'
+  // } else {
+  //   $viewComments.style.display = 'null'
+  // }
   const $fixedButtons = document.getElementById('fixed-buttons')
   const ACCURACY = 20; const MINIMUM = 100
   function handleScrollEvent () {
@@ -834,7 +831,7 @@ function init () {
   initSearch()
   initDetails()
   initLightGallery()
-  initHighlight()
+  // initHighlight()
   initTable()
   initTypeit()
   initMapbox()

@@ -44,12 +44,12 @@
 
                 {{- /* Author */ -}}
                 {{- if ne .Site.Params.footer.author false -}}
-                    <span class="author" itemprop="copyrightHolder">&nbsp;<a href="{{ $.Site.Author.link | default .Site.Home.RelPermalink }}" target="_blank" rel="noopener noreferrer">{{ .Site.Author.name }}</a></span>
+                    <span class="author" itemprop="copyrightHolder">&nbsp;<a href="{{ $.Site.Author.link | default .Site.Home.RelPermalink }}" target="_blank" rel="noopener noreferrer">{{ .Site.Author.name }}.</a></span>
                 {{- end -}}
 
                 {{- /* License */ -}}
                 {{- with .Site.Params.footer.license -}}
-                    &nbsp;|&nbsp;<span class="license">{{ . | safeHTML }}</span>
+                    &nbsp;<span class="license">{{ . | safeHTML }}</span>
                 {{- end -}}
 
                 {{- /* ICP */ -}}
@@ -60,14 +60,17 @@
             </div>
             <div class="footer-line">
                 {{- /* 不蒜子 */ -}}
-                {{- if eq .Site.Params.ibruce.enable true -}}
-                    {{/*  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-                    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>  */}}
+                {{- if eq .Site.Params.footer.ibruce true -}}
                     <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    {{- if eq .Site.Params.footer.uv true -}}
                     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+                        <span class="post-meta-item-icon"><i class="fa fa-user"></i></span>
+                        <span class="site-uv" title="user views"><span id="busuanzi_value_site_uv"></span></span>
+
                         <span class="post-meta-item-icon"><i class="fa fa-eye"></i></span>
-                        <span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span>
+                        <span class="site-pv" title="page views"><span id="busuanzi_value_site_pv"></span></span>
                     </span>
+                    {{- end -}}
                 {{- end -}}
                 {{- /* CNZZ */ -}}
                 {{- if eq .Site.Params.cnzz.enable true -}}

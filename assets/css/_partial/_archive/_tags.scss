@@ -4,26 +4,20 @@
   @include link(true, true);
 
   a {
+    border: solid;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
     display: inline-block;
     position: relative;
-    margin: 5px 10px;
+    margin: 6px 10px;
     @include overflow-wrap(break-word);
     @include transition(all ease-out 0.3s);
-
-    &:active,
-    &:focus,
-    &:hover {
-      @include transform(scale(1.2));
-    }
 
     sup {
       color: $global-font-secondary-color;
 
       [theme=dark] & {
         color: $global-font-secondary-color-dark;
-      }
-      [theme=black] & {
-        color: $global-font-secondary-color-black;
       }
     }
   }

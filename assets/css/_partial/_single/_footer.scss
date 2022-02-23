@@ -3,13 +3,10 @@
 
   .post-info {
     border-bottom: 1px solid $global-border-color;
-    padding: 1rem 0 0.3rem;
+    padding: 0.3rem 0 0.3rem;
 
     [theme=dark] & {
       border-bottom: 1px solid $global-border-color-dark;
-    }
-    [theme=black] & {
-      border-bottom: 1px solid $global-border-color-black;
     }
 
     .post-info-line {
@@ -23,11 +20,14 @@
         [theme=dark] & {
           color: $global-font-secondary-color-dark;
         }
-        [theme=black] & {
-          color: $global-font-secondary-color-black;
-        }
 
         @include link(false, false);
+      }
+
+      .post-info-link {
+        width: 100%;
+        text-align: right;
+        margin: 1rem 0 0.5rem 0;
       }
 
       .post-info-license {
@@ -36,9 +36,6 @@
 
         [theme=dark] & {
           color: $global-font-secondary-color-dark;
-        }
-        [theme=black] & {
-          color: $global-font-secondary-color-black;
         }
 
         @include link(false, false);
@@ -74,6 +71,7 @@
   }
 
   .post-nav {
+    padding-top: 1rem;
     &::before,
     &::after {
       content: ' ';
@@ -83,7 +81,7 @@
     & a.prev,
     & a.next {
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 400;
       @include transition(all 0.3s ease-out);
     }
 

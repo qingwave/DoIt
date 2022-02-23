@@ -572,3 +572,27 @@ rss:
   Newtab: true
   Icon:
     Class: fas fa-rss fa-fw
+
+# 070: Guestbook
+guestbook:
+  Weight: 72
+  Url: /guestbook
+  Title: Guestbook
+  Icon:
+    Class: fa fa-comment fa-fw
+
+# Tags
+tags:
+  Weight: 0
+  Url: /tags
+  Title: Tags
+  Icon:
+    Class: fas fa-tag fa-fw
+
+# Categories
+categories:
+  Weight: 0
+  Url: /categories
+  Title: Categories
+  Icon:
+    Class: fas fa-folder fa-fw

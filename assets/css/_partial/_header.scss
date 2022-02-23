@@ -7,9 +7,6 @@ header {
   [theme=dark] & {
     background-color: $header-background-color-dark;
   }
-  [theme=black] & {
-    background-color: $header-background-color-black;
-  }
 
   .logo {
     min-height: 1.5em;
@@ -97,9 +94,6 @@ header {
     [theme=dark] & {
       background-color: $header-background-color-dark;
     }
-    [theme=black] & {
-      background-color: $header-background-color-black;
-    }
   }
 
   @include placeholder(transparent);
@@ -142,14 +136,6 @@ header {
 
       @include placeholder($global-font-secondary-color-dark);
     }
-    [theme=black] & {
-      input {
-        color: $global-font-color-black;
-        background-color: $search-background-color-black;
-      }
-
-      @include placeholder($global-font-secondary-color-black);
-    }
 
     @include placeholder($global-font-secondary-color);
 
@@ -158,9 +144,6 @@ header {
 
       [theme=dark] & {
         color: $global-font-secondary-color-dark;
-      }
-      [theme=black] & {
-        color: $global-font-secondary-color-black;
       }
     }
 
@@ -175,11 +158,9 @@ header {
 }
 
 .theme-switch i {
-  @include transform(rotate(225deg));
-}
-
-.theme-select i {
-  @include transform(rotate(225deg));
+  [theme=dark] & {
+    transform: rotate(180deg);
+  }
 }
 
 #header-desktop {
@@ -216,9 +197,6 @@ header {
           [theme=dark] & {
             border-left-color: $global-border-color-dark;
           }
-          [theme=black] & {
-            border-left-color: $global-border-color-black;
-          }
         }
 
         &.language {
@@ -240,9 +218,6 @@ header {
 
         [theme=dark] & {
           color: $header-hover-color-dark;
-        }
-        [theme=black] & {
-          color: $header-hover-color-black;
         }
       }
     }
@@ -296,9 +271,6 @@ header {
 
           [theme=dark] & {
             background: $global-font-color-dark;
-          }
-          [theme=black] & {
-            background: $global-font-color-black;
           }
         }
 
@@ -373,10 +345,6 @@ header {
         background: $header-background-color-dark;
         border-top-color: $global-border-color-dark;
       }
-      [theme=black] & {
-        background: $header-background-color-black;
-        border-top-color: $global-border-color-black;
-      }
     }
   }
 
@@ -423,9 +391,6 @@ header {
     [theme=dark] & {
       background-color: $global-background-color-dark;
     }
-    [theme=black] & {
-      background-color: $global-background-color-black;
-    }
 
     .suggestions {
       overflow-y: auto;
@@ -453,9 +418,6 @@ header {
           [theme=dark] & {
             color: $global-font-secondary-color-dark;
           }
-          [theme=black] & {
-            color: $global-font-secondary-color-black;
-          }
         }
 
         .suggestion-context {
@@ -470,9 +432,6 @@ header {
           [theme=dark] & {
             color: $global-font-secondary-color-dark;
           }
-          [theme=black] & {
-            color: $global-font-secondary-color-black;
-          }
         }
 
         em {
@@ -482,9 +441,6 @@ header {
           [theme=dark] & {
             background-color: $selection-color-dark;
           }
-          [theme=black] & {
-            background-color: $selection-color-black;
-          }
         }
 
         &.cursor {
@@ -492,9 +448,6 @@ header {
 
           [theme=dark] & {
             background: lighten($code-background-color-dark, 5%);
-          }
-          [theme=black] & {
-            background: lighten($code-background-color-black, 5%);
           }
         }
 
@@ -514,9 +467,6 @@ header {
         [theme=dark] & {
           color: #ddd;
         }
-        [theme=black] & {
-          color: #ddd;
-        }
       }
     }
 
@@ -528,9 +478,6 @@ header {
 
       [theme=dark] {
         color: $global-font-secondary-color-dark;
-      }
-      [theme=black] {
-        color: $global-font-secondary-color-black;
       }
 
       @include link(false, false);

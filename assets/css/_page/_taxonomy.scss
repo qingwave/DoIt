@@ -9,8 +9,4 @@
       border-left-color: $blockquote-color-dark;
       background-color: rgba($blockquote-color-dark, .2);
     }
-    [theme=black] & {
-      border-left-color: $blockquote-color-black;
-      background-color: rgba($blockquote-color-black, .2);
-    }
 }
