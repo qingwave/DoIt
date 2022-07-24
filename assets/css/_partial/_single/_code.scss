@@ -16,12 +16,10 @@ code {
 
 pre {
   padding: 0;
-  margin: .25rem .5rem .25rem .5rem;
   @include tab-size(4);
 
   code {
-    padding: 0;
-    overflow: auto hidden;
+    padding: 0.75rem;
   }
 
   img {
@@ -32,11 +30,8 @@ pre {
 }
 
 code, pre, .highlight table, .highlight tr, .highlight td {
-  background: $code-background-color;
-
-  [theme=dark] & {
-    background: $code-background-color-dark;
-  }
+  color: $code-color-dark;
+  background: $code-background-color-dark;
 }
 
 .highlight, .gist {
@@ -57,15 +52,24 @@ code, pre, .highlight table, .highlight tr, .highlight td {
 
 .highlight {
   line-height: 1.4em;
-  margin: .5rem 0;
 
   > .chroma {
+    border-radius: 6px;
     position: relative;
-    overflow-x: auto;
+    overflow: hidden;
+
+    &:active, &:focus, &:hover {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
 
     .lntd:first-child {
       min-width: 1.6rem;
       text-align: right;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
     }
 
     .lntd:last-child {
@@ -127,7 +131,7 @@ code, pre, .highlight table, .highlight tr, .highlight td {
 
     &.open {
       .code-header {
-        background: darken($code-background-color, 3%);
+        background: darken($code-background-color-dark, 3%);
 
         [theme=dark] & {
           background: darken($code-background-color-dark, 3%);
@@ -162,7 +166,7 @@ code, pre, .highlight table, .highlight tr, .highlight td {
   /* CommentPreprocFile */  .cpf { font-style: italic }
   /* GenericUnderline */  .gl { text-decoration: underline }
 
-  @each $class, $color in $code-highlight-color-map {
+  @each $class, $color in $code-highlight-color-map-dark {
     .#{$class} { color: $color; }
   }
 

@@ -19,7 +19,8 @@
 
   .single-tag {
     @include link(true, true);
-    a{
+
+    a {
       // font-weight: bolder;
       border-style: solid;
       border-radius: 8px;
@@ -27,12 +28,12 @@
       display: inline-block;
     }
   }
-  
+
   .post-meta {
     margin: 0.5rem 0 1.5rem 0;
   }
 
-  .post-meta a {    
+  .post-meta a {
     font-size: .875rem;
     color: $global-font-secondary-color;
 
@@ -68,7 +69,26 @@
   }
 
   .content {
-    > h2 {
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      & code {
+        color: $code-color;
+        background: $code-background-color;
+
+        [theme=dark] & {
+          color: $code-color-dark;
+          background: $code-background-color-dark;
+        }
+      }
+    }
+
+    >h2 {
       font-size: 1.5rem;
 
       & code {
@@ -76,7 +96,7 @@
       }
     }
 
-    > h3 {
+    >h3 {
       font-size: 1.375rem;
 
       & code {
@@ -84,7 +104,7 @@
       }
     }
 
-    > h4 {
+    >h4 {
       font-size: 1.25rem;
 
       & code {
@@ -92,11 +112,11 @@
       }
     }
 
-    > h5 {
+    >h5 {
       font-size: 1.125rem;
     }
 
-    > h6 {
+    >h6 {
       font-size: 1rem;
     }
 
@@ -113,12 +133,12 @@
       }
     }
 
-    > h2,
-    > h3,
-    > h4,
-    > h5,
-    > h6 {
-      > .header-mark::before {
+    >h2,
+    >h3,
+    >h4,
+    >h5,
+    >h6 {
+      >.header-mark::before {
         content: "|";
         margin-right: .3125rem;
         color: $single-link-color;
@@ -129,7 +149,7 @@
       }
     }
 
-    > h2 > .header-mark::before {
+    >h2>.header-mark::before {
       content: "|";
     }
 
@@ -137,7 +157,8 @@
       margin: 1rem 0;
     }
 
-    b, strong {
+    b,
+    strong {
       font-weight: bold;
 
       [theme=dark] & {
@@ -150,16 +171,19 @@
     a {
       @include overflow-wrap(break-word);
 
-      [theme=dark] & b, [theme=dark] & strong {
+      [theme=dark] & b,
+      [theme=dark] & strong {
         color: $single-link-color-dark;
       }
     }
 
-    [theme=dark] a:hover b, [theme=dark] a:hover strong {
+    [theme=dark] a:hover b,
+    [theme=dark] a:hover strong {
       color: $single-link-hover-color-dark;
     }
 
-    ul, ol {
+    ul,
+    ol {
       margin: .5rem 0;
       padding-left: 2.5rem;
     }
@@ -188,19 +212,18 @@
       overflow-x: hidden;
       border-radius: 6px;
 
-      &:active, &:focus, &:hover {
+      &:active,
+      &:focus,
+      &:hover {
         overflow-x: auto;
+        scrollbar-width: none;
       }
 
       &::-webkit-scrollbar {
-        background-color: $table-background-color;
-
-        [theme=dark] & {
-          background-color: $table-background-color-dark;
-        }
+        display: none;
       }
 
-      > table {
+      >table {
         width: 100%;
         max-width: 100%;
         margin: .625rem 0;
@@ -220,7 +243,8 @@
           }
         }
 
-        th, td {
+        th,
+        td {
           padding: .3rem 1rem;
           border: 1px solid darken($table-thead-color, 2%);
 
@@ -232,7 +256,7 @@
         th[role=columnheader]:not(.no-sort) {
           cursor: pointer;
         }
-        
+
         th[role=columnheader]:not(.no-sort):after {
           content: '';
           float: right;
@@ -240,9 +264,11 @@
           border-width: 0 4px 4px;
           border-style: solid;
           border-color: $global-font-color transparent;
+
           [theme=dark] & {
             border-color: $global-font-color-dark transparent;
           }
+
           visibility: hidden;
           opacity: 0;
           -ms-user-select: none;
@@ -250,17 +276,17 @@
           -moz-user-select: none;
           user-select: none;
         }
-        
+
         th[aria-sort=ascending]:not(.no-sort):after {
           border-bottom: none;
           border-width: 4px 4px 0;
         }
-        
+
         th[aria-sort]:not(.no-sort):after {
           visibility: visible;
           opacity: 0.4;
         }
-        
+
         th[role=columnheader]:not(.no-sort):hover:after {
           visibility: visible;
           opacity: 1;
