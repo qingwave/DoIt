@@ -70,23 +70,6 @@
 
   .content {
 
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      & code {
-        color: $code-color;
-        background: $code-background-color;
-
-        [theme=dark] & {
-          color: $code-color-dark;
-          background: $code-background-color-dark;
-        }
-      }
-    }
 
     >h2 {
       font-size: 1.5rem;
