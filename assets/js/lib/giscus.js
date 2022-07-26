@@ -12,6 +12,7 @@ if (window.config?.comment?.giscus) {
   script.setAttribute('data-emit-metadata', giscusConfig.dataEmitMetadata)
   script.setAttribute('data-input-position', giscusConfig.dataInputPosition)
   script.setAttribute('data-theme', window.isDark ? giscusConfig.darkTheme : giscusConfig.lightTheme)
+  script.setAttribute('data-lang', giscusConfig.dataLang)
   script.crossOrigin = 'anonymous'
   script.async = true
   document.getElementById('giscus').appendChild(script)

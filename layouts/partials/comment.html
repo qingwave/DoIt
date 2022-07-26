@@ -44,8 +44,6 @@
             <div id="valine" class="comment"></div>
             {{- $options := dict "targetPath" "lib/valine/valine.min.css" -}}
             {{- dict "Source" "lib/valine/Valine.scss" "ToCSS" $options | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxStyle.html" -}}
-            {{- $source := $cdn.valineJS | default "lib/valine/Valine.min.js" -}}
-            {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
             {{- $commentConfig = dict "el" "#valine" "appId" $valine.appId "appKey" $valine.appKey "lang" ($valine.lang | default (T "valineLang")) "visitor" $valine.visitor "recordIP" $valine.recordIP "placeholder" ($valine.placeholder | default (T "valinePlaceholder")) "highlight" (ne $valine.highlight false) "enableQQ" $valine.enableQQ | dict "valine" | merge $commentConfig -}}
             {{- with $valine.avatar -}}
                 {{- $commentConfig = dict "avatar" . | dict "valine" | merge $commentConfig -}}
@@ -62,9 +60,14 @@
             {{- $commentConfig = $valine.emoji | default "google.yml" | printf "data/emoji/%v" | resources.Get | transform.Unmarshal | dict "valine" | merge $commentConfig -}}
             {{- $shims := dict "valine" "js/shims/valine.js" -}}
             {{- $options := dict -}}
+            {{- if $bundle -}}
+            {{- else -}}
+                {{- $source := $cdn.valineJS | default "lib/valine/Valine.min.js" -}}
+                {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
+                {{- $options = dict "shims" $shims | merge $options -}}
+            {{- end -}}
             {{- $options = dict "targetPath" "js/valine.min.js" | merge $options -}}
             {{- $options = dict "minify" true | merge $options -}}
-            {{- $options = dict "shims" $shims | merge $options -}}
             {{- $js := resources.Get "js/lib/valine.js" | js.Build $options -}}
             {{- $_ := $js.RelPermalink -}}
             {{- dict "Link" $js.RelPermalink "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}       
@@ -77,9 +80,14 @@
         {{- $waline := $comment.waline | default dict -}}
         {{- if $waline.enable -}}
             <div id="waline" class="comment"></div>
+            {{- $source := $cdn.walineCSS | default "lib/waline/waline.css" -}}
+            {{- dict "Source" $source "Minify" true "Fingerprint" $fingerprint | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxStyle.html" -}}
             {{- $commentConfig = dict "el" "#waline" "serverURL" $waline.serverURL "lang" .Lang "dark" "body[theme='dark'], body[theme='black']" "copyright" true | dict "waline" | merge $commentConfig -}}
-            {{- with $waline.visitor -}}
-                {{- $commentConfig = dict "visitor" . | dict "waline" | merge $commentConfig -}}
+            {{- with $waline.pageview -}}
+                {{- $commentConfig = dict "pageview" . | dict "waline" | merge $commentConfig -}}
+            {{- end -}}
+            {{- with $waline.comment -}}
+                {{- $commentConfig = dict "comment" . | dict "waline" | merge $commentConfig -}}
             {{- end -}}
             {{- with $waline.emoji -}}
                 {{- $commentConfig = dict "emoji" . | dict "waline" | merge $commentConfig -}}
@@ -99,20 +107,20 @@
             {{- with $waline.pageSize -}}
                 {{- $commentConfig = dict "pageSize" . | dict "waline" | merge $commentConfig -}}
             {{- end -}}
-            {{- with $waline.uploadImage -}}
-                {{- $commentConfig = dict "uploadImage" . | dict "waline" | merge $commentConfig -}}
+            {{- if eq $waline.imageUploader false -}}
+                {{- $commentConfig = dict "imageUploader" false | dict "waline" | merge $commentConfig -}}
             {{- end -}}
-            {{- with $waline.highlight -}}
-                {{- $commentConfig = dict "highlight" . | dict "waline" | merge $commentConfig -}}
+            {{- if eq $waline.highlighter false -}}
+                {{- $commentConfig = dict "highlighter" false | dict "waline" | merge $commentConfig -}}
             {{- end -}}
-            {{- with $waline.mathTagSupport -}}
-                {{- $commentConfig = dict "mathTagSupport" . | dict "waline" | merge $commentConfig -}}
+            {{- if eq $waline.texRenderer false -}}
+                {{- $commentConfig = dict "texRenderer" false | dict "waline" | merge $commentConfig -}}
             {{- end -}}
             {{- $shims := dict "@waline/client" "js/shims/waline.js" -}}
             {{- $options := dict -}}
             {{- if $bundle -}}
             {{- else -}}
-                {{- $source := $cdn.walineJS | default "lib/waline/Waline.min.js" -}}
+                {{- $source := $cdn.walineJS | default "lib/waline/waline.js" -}}
                 {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
                 {{- $options = dict "shims" $shims | merge $options -}}
             {{- end -}}
@@ -316,8 +324,10 @@
             {{- $commentConfig = $giscus.dataMapping | default "pathname" | dict "dataMapping" | dict "giscus" | merge $commentConfig -}}
             {{- $commentConfig = $giscus.dataReactionsEnabled | default "1" | dict "dataReactionsEnabled" | dict "giscus" | merge $commentConfig -}}
             {{- $commentConfig = $giscus.dataEmitMetadata | default "0" | dict "dataEmitMetadata" | dict "giscus" | merge $commentConfig -}}
+            {{- $commentConfig = $giscus.dataInputPosition | default "bottom" | dict "dataInputPosition" | dict "giscus" | merge $commentConfig -}}
             {{- $commentConfig = $giscus.lightTheme | default "light" | dict "lightTheme" | dict "giscus" | merge $commentConfig -}}
             {{- $commentConfig = $giscus.darkTheme | default "dark" | dict "darkTheme" | dict "giscus" | merge $commentConfig -}}
+            {{- $commentConfig = $giscus.dataLang | default "en" | dict "dataLang" | dict "giscus" | merge $commentConfig -}}
             {{- $options := dict "targetPath" "js/giscus.min.js" "minify" true -}}
             {{- $js := resources.Get "js/lib/giscus.js" | js.Build $options -}}
             {{- $_ := $js.RelPermalink -}}

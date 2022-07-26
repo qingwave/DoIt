@@ -57,14 +57,19 @@
 
 {{- /* twemoji */ -}}
 {{- if $params.twemoji -}}
-    {{- $source := $cdn.twemojiJS | default "lib/twemoji/twemoji.min.js" -}}
-    {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
     {{- $config = dict "twemoji" true | merge $config -}}
-    {{- $shims := dict "twemoji" "js/shims/twemoji.js" -}}
     {{- $options := dict -}}
+
+    {{- if $bundle -}}
+    {{- else -}}
+        {{- $source := $cdn.twemojiJS | default "lib/twemoji/twemoji.min.js" -}}
+        {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
+        {{- $shims := dict "twemoji" "js/shims/twemoji.js" -}}
+        {{- $options = dict "shims" $shims | merge $options -}}
+    {{- end -}}
+
     {{- $options = dict "targetPath" "js/twemoji.min.js" | merge $options -}}
     {{- $options = dict "minify" true | merge $options -}}
-    {{- $options = dict "shims" $shims | merge $options -}}
     {{- $js := resources.Get "js/lib/twemoji.js" | js.Build $options -}}
     {{- $_ := $js.RelPermalink -}}
     {{- dict "Link" $js.RelPermalink "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
@@ -177,16 +182,29 @@
 
 {{- /* ECharts */ -}}
 {{- if (.Scratch.Get "this").echarts -}}
-    {{- $source := $cdn.echartsJS | default "lib/echarts/echarts.min.js" -}}
-    {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
-    {{- $source := $cdn.echartsMacaronsJS | default "lib/echarts/macarons.min.js" -}}
-    {{- dict "Source" $source "Minify" true "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
     {{- $config = dict "echarts" true | merge $config -}}
-    {{- $shims := dict "echarts" "js/shims/echarts.js" -}}
     {{- $options := dict -}}
+    {{- $shims := dict "echarts" "js/shims/echarts.js" -}}
     {{- $options = dict "targetPath" "js/echarts.min.js" | merge $options -}}
     {{- $options = dict "minify" true | merge $options -}}
-    {{- $options = dict "shims" $shims | merge $options -}}
+    {{- $options = dict "sourceMap" "inline" | merge $options -}}
+
+    {{- if $bundle -}}
+        {{- /* $options = dict "params" (dict "bundle" true) | merge $options */ -}}
+        {{- $source := $cdn.echartsJS | default "lib/echarts/echarts.min.js" -}}
+        {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
+        {{- $source := $cdn.echartsMacaronsJS | default "lib/echarts/macarons.min.js" -}}
+        {{- dict "Source" $source "Minify" true "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
+        {{- $options = dict "shims" $shims | merge $options -}}
+    {{- else -}}
+        {{- $source := $cdn.echartsJS | default "lib/echarts/echarts.min.js" -}}
+        {{- dict "Source" $source "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
+        {{- $source := $cdn.echartsMacaronsJS | default "lib/echarts/macarons.min.js" -}}
+        {{- dict "Source" $source "Minify" true "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
+        {{- $options = dict "shims" $shims | merge $options -}}
+        {{- /* $options = dict "params" (dict "bundle" false) | merge $options */ -}}
+    {{- end -}}
+    
     {{- $js := resources.Get "js/lib/echarts.js" | js.Build $options -}}
     {{- $_ := $js.RelPermalink -}}
     {{- dict "Link" $js.RelPermalink "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/pjaxScript.html" -}}
@@ -279,11 +297,12 @@
     {{- end -}}
 {{- end -}}
 
+{{/*  Custom style  */}}
 {{- with (.Scratch.Get "this").styleArr -}}
     {{- $content := delimit . "" -}}
     {{- $path := substr (md5 $content) 0 6 | printf "css/%v" -}}
     {{- $options := printf "%v.min.css" $path | dict "targetPath" -}}
-    {{- dict "Content" $content "Path" (printf "%v.scss" $path) "ToCSS" $options | dict "Scratch" $.Scratch "Data" | partial "scratch/style.html" -}}
+    {{- dict "Content" $content "Path" (printf "%v.scss" $path) "ToCSS" $options | dict "Scratch" $.Scratch "Data" | partial "scratch/pjaxStyle.html" -}}
 {{- end -}}
 
 {{- /* topbar */ -}}
@@ -317,7 +336,7 @@
 {{- end -}}
 {{- $js := resources.Get "js/theme.js" | js.Build $options -}}
 {{- $_ := $js.RelPermalink -}}
-{{- dict "Link" $js.RelPermalink "Fingerprint" $fingerprint | dict "Scratch" .Scratch "Data" | partial "scratch/script.html" -}}
+{{- dict "Link" $js.RelPermalink "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/script.html" -}}
 
 {{- with (.Scratch.Get "this").scriptArr -}}
 {{- delimit . "\n" | dict "Content" | dict "Scratch" $.Scratch "Data" | partial "scratch/pjaxScript.html" -}}

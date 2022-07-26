@@ -545,7 +545,7 @@ enableEmoji = true
   images = ["/images/avatar.webp"]
   # enable PWA
   # 开启 PWA 支持
-  enablePWA = true
+  enablePWA = false
   # license information
   # 许可协议信息 (支持 HTML 格式)
   license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
@@ -699,7 +699,7 @@ enableEmoji = true
     # Display a message at the beginning of an article to warn the reader that its content might be outdated.
     # 在文章开头显示提示信息，提醒读者文章内容可能过时。
     [params.page.outdatedArticleReminder]
-      enable = true
+      enable = false
       # Display the reminder if the last modified time is more than 90 days ago.
       # 如果文章最后更新于这天数之前，显示提醒
       reminder = 90
@@ -733,6 +733,17 @@ enableEmoji = true
       # whether to enable sorting in the tables
       # 是否开启表格排序
       sort = true
+    [params.page.header]
+      # whether to enable auto header numbering
+      # 是否开启标题自动编号
+      [params.page.header.number]
+        enable = true
+        [params.page.header.number.format]
+          h2 = "{h2} {title}"
+          h3 = "{h2}.{h3} {title}"
+          h4 = "{h2}.{h3}.{h4} {title}"
+          h5 = "{h2}.{h3}.{h4}.{h5} {title}"
+          h6 = "{h2}.{h3}.{h4}.{h5}.{h6} {title}"
     # KaTeX mathematical formulas config (KaTeX https://katex.org/)
     # KaTeX 数学公式配置 (KaTeX https://katex.org/)
     [params.page.math]
@@ -830,8 +841,8 @@ enableEmoji = true
       # Valine 评论系统设置 (https://github.com/xCss/Valine)
       [params.page.comment.valine]
         enable = false
-        appId = "aM7gLUeWp8it1Efrcp3rm8TB-MdYXbMMI"
-        appKey = "Xn1xlYj3Fm5gvsYG3WyQpaix"
+        appId = ""
+        appKey = ""
         placeholder = ""
         avatar = "mp"
         meta= ""
@@ -857,18 +868,18 @@ enableEmoji = true
       # Waline 评论系统设置 (https://waline.js.org)
       [params.page.comment.waline]
         enable = false
-        serverURL = ""
-        visitor = false
-        emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
-        meta = ['nick', 'mail', 'link']
-        requiredMeta = []
-        login = 'enable'
-        wordLimit = 0
-        pageSize = 10
-        uploadImage = false
-        highlight = true
-        mathTagSupport = false
-        commentCount = false
+        serverURL = "https://do-it-waline-comment.vercel.app"
+        pageview = true
+        comment = true
+        # emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
+        # meta = ['nick', 'mail', 'link']
+        # requiredMeta = []
+        # login = 'enable'
+        # wordLimit = 0
+        # pageSize = 10
+        # imageUploader = false
+        # highlighter = false
+        # texRenderer = false
       # Facebook comment config (https://developers.facebook.com/docs/plugins/comments)
       # Facebook 评论系统设置 (https://developers.facebook.com/docs/plugins/comments)
       [params.page.comment.facebook]
@@ -942,8 +953,10 @@ enableEmoji = true
         dataMapping = "pathname"
         dataReactionsEnabled = "1"
         dataEmitMetadata = "0"
+        dataInputPosition = "bottom"
         lightTheme = "light"
         darkTheme = "dark"
+        dataLang = "en"
     # Third-party library config
     # 第三方库配置
     [params.page.library]

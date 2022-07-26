@@ -200,6 +200,23 @@
       &:hover {
         overflow-x: auto;
         scrollbar-width: none;
+        @if $custom-scrollbar {
+          &::-webkit-scrollbar {
+            background-color: $table-background-color;
+    
+            [theme=dark] & {
+              background-color: $table-background-color-dark;
+            }
+          }
+
+          ::-webkit-scrollbar-corner {
+            background-color: $table-background-color;
+
+            [theme=dark] & {
+              background-color: $table-background-color-dark;
+            }
+          }
+        }
       }
 
       &::-webkit-scrollbar {
@@ -332,8 +349,19 @@
       p {
         margin: .25rem 0;
       }
+
+      li {
+        scroll-margin-top: 3.5rem;
+      }
     }
 
+    .headerLink {
+      scroll-margin-top: 3.5rem;
+    }
+    
+    sup {
+      scroll-margin-top: 3.5rem;
+    }
     @import "../_partial/_single/code";
     @import "../_partial/_single/katex";
     @import "../_partial/_single/admonition";
