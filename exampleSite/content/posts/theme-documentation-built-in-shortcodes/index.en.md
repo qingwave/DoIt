@@ -123,18 +123,6 @@ The rendered output looks like this:
 
 [Documentation of `ref` and `relref`](https://gohugo.io/content-management/shortcodes#ref-and-relref)
 
-## tweet
-
-[Documentation of `tweet`](https://gohugo.io/content-management/shortcodes#tweet)
-
-Example `tweet` input:
-
-```markdown
-{{</* tweet user="SanDiegoZoo" id="1453110110599868418" */>}}
-```
-
-{{< tweet user="SanDiegoZoo" id="1453110110599868418" >}}
-
 ## vimeo
 
 [Documentation of `vimeo`](https://gohugo.io/content-management/shortcodes#vimeo)

@@ -364,10 +364,7 @@
       scroll-margin-top: 3.5rem;
     }
     @import "../_partial/_single/code";
-    @import "../_partial/_single/katex";
     @import "../_partial/_single/admonition";
-    @import "../_partial/_single/echarts";
-    @import "../_partial/_single/mapbox";
     @import "../_partial/_single/music";
     @import "../_partial/_single/bilibili";
     @import "../_partial/_single/showcase";
@@ -401,16 +398,6 @@
         border-bottom-color: $global-border-color-dark;
         @include box-shadow(inset 0 -1px 0 $global-border-color-dark);
         color: $code-color-dark;
-      }
-    }
-
-    .typeit {
-      .code {
-        padding: .375rem;
-        font-size: .875rem;
-        font-family: $code-font-family;
-        font-weight: bold;
-        word-break: break-all;
       }
     }
 

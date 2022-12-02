@@ -124,18 +124,6 @@ Hugo 附带了一组预定义的 shortcodes, 它们实现了一些非常常见�
 
 [`ref` 和 `relref` 的文档](https://gohugo.io/content-management/shortcodes#ref-and-relref)
 
-## tweet
-
-[`tweet` 的文档](https://gohugo.io/content-management/shortcodes#tweet)
-
-一个 `tweet` 示例:
-
-```markdown
-{{</* tweet user="SanDiegoZoo" id="1453110110599868418" */>}}
-```
-
-{{< tweet user="SanDiegoZoo" id="1453110110599868418" >}}
-
 ## vimeo
 
 [`vimeo` 的文档](https://gohugo.io/content-management/shortcodes#vimeo)

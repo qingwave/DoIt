@@ -1,10 +1,6 @@
 /* eslint-disable no-new */
 /* eslint-disable no-undef */
-import * as topbar from 'topbar'
 import lazySizes from 'lazysizes'
-// import ClipboardJS from 'clipboard'
-const Tablesort = require('tablesort')
-// const autocomplete = require('autocomplete.js')
 
 function escape (unsafe) {
   return unsafe.replace(/&/g, '&amp;')
@@ -272,67 +268,7 @@ function initSearch () {
           searchClear.style.display = 'inline'
           callback(results)
         }
-        if (searchConfig.type === 'lunr') {
-          const search = () => {
-            if (lunr.queryHandler) query = lunr.queryHandler(query)
-            const results = {}
-            window._index.search(query).forEach(({ ref, matchData: { metadata } }) => {
-              const matchData = window._indexData[ref]
-              let { uri, title, content: context } = matchData
-              if (results[uri]) return
-              let position = 0
-              Object.values(metadata).forEach(({ content }) => {
-                if (content) {
-                  const matchPosition = content.position[0][0]
-                  if (matchPosition < position || position === 0) position = matchPosition
-                }
-              })
-              position -= snippetLength / 5
-              if (position > 0) {
-                position += context.substr(position, 20).lastIndexOf(' ') + 1
-                context = '...' + context.substr(position, snippetLength)
-              } else {
-                context = context.substr(0, snippetLength)
-              }
-              Object.keys(metadata).forEach(key => {
-                title = title.replace(new RegExp(`(${key})`, 'gi'), `<${highlightTag}>$1</${highlightTag}>`)
-                context = context.replace(new RegExp(`(${key})`, 'gi'), `<${highlightTag}>$1</${highlightTag}>`)
-              })
-              results[uri] = {
-                uri: uri,
-                title: title,
-                date: matchData.date,
-                context: context
-              }
-            })
-            return Object.values(results).slice(0, maxResultLength)
-          }
-          if (!window._index) {
-            fetch(searchConfig.lunrIndexURL)
-              .then(response => response.json())
-              .then(data => {
-                const indexData = {}
-                window._index = lunr(function () {
-                  if (searchConfig.lunrLanguageCode) this.use(lunr[searchConfig.lunrLanguageCode])
-                  this.ref('objectID')
-                  this.field('title', { boost: 50 })
-                  this.field('tags', { boost: 20 })
-                  this.field('categories', { boost: 20 })
-                  this.field('content', { boost: 10 })
-                  this.metadataWhitelist = ['position']
-                  data.forEach((record) => {
-                    indexData[record.objectID] = record
-                    this.add(record)
-                  })
-                })
-                window._indexData = indexData
-                finish(search())
-              }).catch(err => {
-                console.error(err)
-                finish([])
-              })
-          } else finish(search())
-        } else if (searchConfig.type === 'algolia') {
+        if (searchConfig.type === 'algolia') {
           window._algoliaIndex = window._algoliaIndex || algoliasearch(searchConfig.algoliaAppID, searchConfig.algoliaSearchKey).initIndex(searchConfig.algoliaIndex)
           window._algoliaIndex
             .search(query, {
@@ -436,17 +372,11 @@ function initSearch () {
                 icon: '<i class="fab fa-algolia fa-fw"></i>',
                 href: 'https://www.algolia.com/'
               }
-            : (searchConfig.type === 'lunr'
-                ? {
-                    searchType: 'Lunr.js',
-                    icon: '',
-                    href: 'https://lunrjs.com/'
-                  }
-                : {
-                    searchType: 'Fuse.js',
-                    icon: '',
-                    href: 'https://fusejs.io/'
-                  })
+            : {
+                searchType: 'Fuse.js',
+                icon: '',
+                href: 'https://fusejs.io/'
+              }
           return `<div class="search-footer">Search by <a href="${href}" rel="noopener noreffer" target="_blank">${icon} ${searchType}</a></div>`
         }
       }
@@ -457,26 +387,7 @@ function initSearch () {
     if (isMobile) window._searchMobile = autosearch
     else window._searchDesktop = autosearch
   }
-  if (searchConfig.lunrSegmentitURL && !document.getElementById('lunr-segmentit')) {
-    const script = document.createElement('script')
-    script.id = 'lunr-segmentit'
-    script.type = 'text/javascript'
-    script.src = searchConfig.lunrSegmentitURL
-    script.async = true
-    if (script.readyState) {
-      script.onreadystatechange = () => {
-        if (script.readyState === 'loaded' || script.readyState === 'complete') {
-          script.onreadystatechange = null
-          initAutosearch()
-        }
-      }
-    } else {
-      script.onload = () => {
-        initAutosearch()
-      }
-    }
-    document.body.appendChild(script)
-  } else initAutosearch()
+  initAutosearch()
 }
 
 function initDetails () {
@@ -519,15 +430,6 @@ function initHighlight () {
     const $codeElements = $chroma.querySelectorAll('pre.chroma > code')
     if ($codeElements.length) {
       const $code = $codeElements[$codeElements.length - 1]
-      // const $header = document.createElement('div')
-      // $header.className = 'code-header ' + $code.className.toLowerCase()
-      // const $title = document.createElement('span')
-      // $title.classList.add('code-title')
-      // $title.insertAdjacentHTML('afterbegin', '<i class="arrow fas fa-chevron-right fa-fw"></i>')
-      // $title.addEventListener('click', () => {
-      //   $chroma.classList.toggle('open')
-      // }, false)
-      // $header.appendChild($title)
       const $ellipses = document.createElement('span')
       $ellipses.insertAdjacentHTML('afterbegin', '<i class="fas fa-ellipsis-h fa-fw"></i>')
       $ellipses.classList.add('ellipses')
@@ -535,24 +437,8 @@ function initHighlight () {
         $chroma.classList.add('open')
       }, false)
       $header.appendChild($ellipses)
-      // const $copy = document.createElement('span')
-      // $copy.insertAdjacentHTML('afterbegin', '<i class="far fa-copy fa-fw"></i>')
-      // $copy.classList.add('copy')
       const code = $code.innerText
       if (window.config.code.maxShownLines < 0 || code.split('\n').length < window.config.code.maxShownLines + 2) $chroma.classList.add('open')
-      // if (window.config.code.copyTitle) {
-      //   $copy.setAttribute('data-clipboard-text', code)
-      //   $copy.title = window.config.code.copyTitle
-      //   const clipboard = new ClipboardJS($copy)
-      //   clipboard.on('success', _e => {
-      //     animateCSS($code, 'animate__flash')
-      //     $copy.firstElementChild.className = 'fas fa-check fa-fw'
-      //     setTimeout(() => {
-      //       $copy.firstElementChild.className = 'far fa-copy fa-fw'
-      //     }, 3000)
-      //   })
-      //   $header.appendChild($copy)
-      // }
       $chroma.insertBefore($header, $chroma.firstChild)
     }
   })
@@ -564,9 +450,6 @@ function initTable () {
     $wrapper.className = 'table-wrapper'
     $table.parentElement.replaceChild($wrapper, $table)
     $wrapper.appendChild($table)
-    if (window.config?.table?.sort) {
-      new Tablesort($table)
-    }
   })
 }
 
@@ -653,94 +536,6 @@ function initToc () {
     })
     window._tocOnScroll()
     window.scrollEventSet.add(window._tocOnScroll)
-  }
-}
-
-function initMapbox () {
-  if (window.config.mapbox) {
-    mapboxgl.accessToken = window.config.mapbox.accessToken
-    mapboxgl.setRTLTextPlugin(window.config.mapbox.RTLTextPlugin)
-    window._mapboxArr = window._mapboxArr || []
-    forEach(document.getElementsByClassName('mapbox'), $mapbox => {
-      const { lng, lat, zoom, lightStyle, darkStyle, marked, navigation, geolocate, scale, fullscreen } = window.config.data[$mapbox.id]
-      const mapbox = new mapboxgl.Map({
-        container: $mapbox,
-        center: [lng, lat],
-        zoom: zoom,
-        minZoom: 0.2,
-        style: window.isDark ? darkStyle : lightStyle,
-        attributionControl: false
-      })
-      if (marked) {
-        new mapboxgl.Marker().setLngLat([lng, lat]).addTo(mapbox)
-      }
-      if (navigation) {
-        mapbox.addControl(new mapboxgl.NavigationControl(), 'bottom-right')
-      }
-      if (geolocate) {
-        mapbox.addControl(new mapboxgl.GeolocateControl({
-          positionOptions: {
-            enableHighAccuracy: true
-          },
-          showUserLocation: true,
-          trackUserLocation: true
-        }), 'bottom-right')
-      }
-      if (scale) {
-        mapbox.addControl(new mapboxgl.ScaleControl())
-      }
-      if (fullscreen) {
-        mapbox.addControl(new mapboxgl.FullscreenControl())
-      }
-      mapbox.addControl(new MapboxLanguage())
-      window._mapboxArr.push(mapbox)
-    })
-    window._mapboxOnSwitchTheme = () => {
-      forEach(window._mapboxArr, mapbox => {
-        const $mapbox = mapbox.getContainer()
-        const { lightStyle, darkStyle } = window.config.data[$mapbox.id]
-        mapbox.setStyle(window.isDark ? darkStyle : lightStyle)
-        mapbox.addControl(new MapboxLanguage())
-      })
-    }
-    window.switchThemeEventSet.add(window._mapboxOnSwitchTheme)
-  }
-}
-
-function initTypeit () {
-  if (window.config.typeit) {
-    const typeitConfig = window.config.typeit
-    const speed = typeitConfig.speed ? typeitConfig.speed : 100
-    const cursorSpeed = typeitConfig.cursorSpeed ? typeitConfig.cursorSpeed : 1000
-    const cursorChar = typeitConfig.cursorChar ? typeitConfig.cursorChar : '|'
-    Object.values(typeitConfig.data).forEach(group => {
-      const typeone = (i) => {
-        const id = group[i]
-        if (!document.getElementById(id).hasAttribute('data-typeit-id')) {
-          const instance = new TypeIt(`#${id}`, {
-            strings: window.config.data[id],
-            speed: speed,
-            lifeLike: true,
-            cursorSpeed: cursorSpeed,
-            cursorChar: cursorChar,
-            waitUntilVisible: true,
-            afterComplete: () => {
-              if (i === group.length - 1) {
-                if (typeitConfig.duration >= 0) {
-                  window.setTimeout(() => {
-                    instance.destroy()
-                  }, typeitConfig.duration)
-                }
-                return
-              }
-              instance.destroy()
-              typeone(i + 1)
-            }
-          }).go()
-        }
-      }
-      typeone(0)
-    })
   }
 }
 
@@ -855,8 +650,6 @@ function init () {
   initLightGallery()
   // initHighlight()
   initTable()
-  initTypeit()
-  initMapbox()
   initToc()
   onScroll()
   onResize()
@@ -904,17 +697,3 @@ document.addEventListener('pjax:send', function () {
     window.lgData[el?.getAttribute('lg-uid')]?.destroy(true)
   }
 })
-
-topbar.config({
-  autoRun: true,
-  barThickness: 3,
-  barColors: {
-    0: '#55bde2'
-  },
-  shadowBlur: 0,
-  shadowColor: 'rgba(0, 0, 0, .5)',
-  className: 'topbar'
-})
-document.addEventListener('pjax:send', topbar.show)
-document.addEventListener('pjax:complete', topbar.hide)
-document.addEventListener('pjax:error', topbar.hide)
