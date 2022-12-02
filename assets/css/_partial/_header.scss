@@ -1,12 +1,9 @@
 header {
   width: 100%;
   z-index: 150;
-  background-color: $header-background-color;
+  // border-bottom: 1px solid #e2e8f0;
+  // background-color: $header-background-color;
   @include transition(box-shadow 0.3s ease);
-
-  [theme=dark] & {
-    background-color: $header-background-color-dark;
-  }
 
   .logo {
     min-height: 1.5em;
@@ -18,12 +15,12 @@ header {
     padding-right: .25rem;
   }
 
-  .header-title-post {
-    padding-left: .25rem;
+  .header-title-inner {
+    color: $single-link-color;
   }
 
-  &:hover {
-    @include box-shadow(0 0 1.5rem 0 rgba(0, 0, 0, .1));
+  .header-title-post {
+    padding-left: .25rem;
   }
 }
 
@@ -87,13 +84,9 @@ header {
     @include border-radius(.5rem);
     border: none;
     outline: none;
-    background-color: $header-background-color;
+    // background-color: $header-background-color;
     vertical-align: baseline !important;
     @include transition(width 0.3s ease);
-
-    [theme=dark] & {
-      background-color: $header-background-color-dark;
-    }
   }
 
   @include placeholder(transparent);
@@ -104,8 +97,6 @@ header {
     left: auto;
     right: 1rem;
     text-align: center;
-    top: -13pt;
-    bottom: -13pt;
   }
 
   .search-toggle {
@@ -124,7 +115,7 @@ header {
   .open &, &.mobile {
     input {
       color: $global-font-color;
-      background-color: $search-background-color;
+      // background-color: $search-background-color;
       padding: 0 2rem 0 2rem;
     }
 
@@ -147,13 +138,13 @@ header {
       }
     }
 
-    .search-clear:hover {
-      color: #ff6b6b;
-    }
+    // .search-clear:hover {
+    //   color: #ff6b6b;
+    // }
 
-    .search-toggle:hover {
-      cursor: default;
-    }
+    // .search-toggle:hover {
+    //   cursor: default;
+    // }
   }
 }
 
@@ -174,7 +165,8 @@ header {
   }
 
   .header-wrapper {
-    padding: 0 2rem 0 10%;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+    margin: auto;
 
     .header-title {
       font-size: $header-title-font-size;
@@ -189,7 +181,7 @@ header {
       }
 
       .menu-item {
-        margin: 0 .5rem;
+        margin: 0 .125rem;
 
         &.delimiter {
           border-left: 1.5px solid $global-font-color;
@@ -208,7 +200,7 @@ header {
         }
 
         &.search {
-          margin: 0 -.5rem 0 0;
+          margin-right: 0;
         }
       }
 
@@ -224,10 +216,10 @@ header {
   }
 
   &.open .header-wrapper .menu .menu-item.search {
-    margin: 0 .25rem 0 .5rem;
+    // margin: 0 .25rem 0 .5rem;
 
     input {
-      width: 24rem;
+      width: 15rem;
     }
   }
 }

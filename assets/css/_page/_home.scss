@@ -186,7 +186,7 @@
   }
 
   .post-item {
-    font-size: 1.2rem;
+    font-size: 1.125rem;
     display: flex;
     justify-content: space-between;
     margin: .4rem 0 .8rem 0;
@@ -214,6 +214,8 @@
   }
   
   .post-item-date {
+    color: $global-font-color-light;
+    font-size: 1rem;
     text-align: left;
     width: 10%;
     min-width: 4rem;

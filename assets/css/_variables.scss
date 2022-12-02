@@ -4,7 +4,7 @@
 
 // ========== Global ========== //
 // Font and Line Height
-$global-font-family: 'Bree Serif', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei UI, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$global-font-family: JetBrainsMono, system-ui, -apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei UI, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif !default;
 $global-font-size: 18px;
 $global-font-weight: 400;
 $global-line-height: 1.75rem;
@@ -18,8 +18,9 @@ $footer-color: rgb(90, 90, 90);
 $footer-color-dark: rgb(150, 150, 150);
 
 // Color of the text
-$global-font-color: #161209 !default;
+$global-font-color: #334155 !default;
 $global-font-color-dark: #a9a9b3 !default;
+$global-font-color-light: #64748b;
 
 
 // Color of the secondary text
@@ -28,11 +29,11 @@ $global-font-secondary-color-dark: #b5b5b5 !default;
 
 
 // Color of the link
-$global-link-color: #161209 !default;
+$global-link-color: #334155 !default;
 $global-link-color-dark: #a9a9b3 !default;
 
 // Color of the hover link
-$global-link-hover-color: #406882 !default;
+$global-link-hover-color: #34d399 !default;
 $global-link-hover-color-dark: #fff !default;
 
 // Color of the border
@@ -69,11 +70,11 @@ $header-background-color-dark: #252627 !default;
 
 
 // Font style of the header title
-$header-title-font-family: "Permanent Marker", system-ui, -apple-system !default;
-$header-title-font-size: 1.5rem !default;
+$header-title-font-family: PermanentMarker, system-ui, -apple-system !default;
+$header-title-font-size: 2rem !default;
 
 // Color of the hover header item
-$header-hover-color: #161209 !default;
+$header-hover-color: #334155 !default;
 $header-hover-color-dark: #fff !default;
 
 
@@ -89,17 +90,17 @@ $toc-title-font-size: 1.2rem !default;
 $toc-content-font-size: 1rem !default;
 
 // Color of the single link
-$single-link-color: #406882 !default;
-$single-link-color-dark: #6998AB !default;
+$single-link-color: #34d399 !default;
+$single-link-color-dark: #10b981 !default;
 
 // Color of the hover single link
-$single-link-hover-color: #6998AB !default;
+$single-link-hover-color: #10b981 !default;
 $single-link-hover-color-dark: #fff !default;
 
 
 // Color of the table background
 $table-background-color: #fff !default;
-$table-background-color-dark: #272c34 !default;
+$table-background-color-dark: #1e293b !default;
 
 
 // Color of the table thead
@@ -108,14 +109,14 @@ $table-thead-color-dark: #20252b !default;
 
 
 // Color of the blockquote
-$blockquote-color: #6998AB !default;
-$blockquote-color-dark: #406882 !default;
+$blockquote-color: #cbd5e1 !default;
+$blockquote-color-dark: #34d399 !default;
 
 // ========== Single Content ========== //
 
 // ========== Pagination ========== //
 // Color of the link in pagination
-$pagination-link-color: #406882 !default;
+$pagination-link-color: #34d399 !default;
 $pagination-link-color-dark: #a9a9b3 !default;
 
 
@@ -127,18 +128,12 @@ $pagination-link-hover-color-dark: #fff !default;
 
 // ========== Code ========== //
 // Color of the code
-$code-color: #272C34 !default;
-$code-color-dark: #aab1bf !default; //E5BF78
-
+$code-color: #1e293b !default;
+$code-color-dark: #cbd5e1 !default;
 
 // Color of the code background
 $code-background-color: #f5f5f5 !default;
-$code-background-color-dark: #272C34 !default;
-
-
-$code-info-color: #9c9c9c !default;
-$code-info-color-dark: #b1b0b0 !default;
-
+$code-background-color-dark: #1e293b !default;
 
 // Color of the tag
 $tag-background-color: #e0e0e0 !default;
@@ -149,7 +144,7 @@ $tag-background-color-dark: #424242 !default;
 $code-font-size: .875rem !default;
 
 // Font family of the code
-$code-font-family: Source Code Pro, Menlo, Consolas, Monaco, monospace, $global-font-family !default;
+$code-font-family: JetBrainsMono, Source Code Pro, Menlo, Consolas, Monaco, monospace, $global-font-family !default;
 
 // Code type map
 $code-type-map: (
@@ -283,20 +278,20 @@ $code-highlight-color-map: (
 ) !default;
 $code-highlight-color-map-dark: (
   /* Parentheses */ 'p': #a9a9b3,
-  /* Keyword */ 'k': #d371e3,
-  /* KeywordConstant */ 'kc': #d371e3,
-  /* KeywordDeclaration */ 'kd': #d371e3,
-  /* KeywordNamespace */ 'kn': #d371e3,
-  /* KeywordPseudo */ 'kp': #d371e3,
-  /* KeywordReserved */ 'kr': #d371e3,
-  /* KeywordType */ 'kt': #d371e3,
-  /* Name */ 'n': #a9b2c0,
-  /* NameAttribute */ 'na': #41b0f5,
+  /* Keyword */ 'k': #f97316,
+  /* KeywordConstant */ 'kc': #f97316,
+  /* KeywordDeclaration */ 'kd': #f97316,
+  /* KeywordNamespace */ 'kn': #f97316,
+  /* KeywordPseudo */ 'kp': #f97316,
+  /* KeywordReserved */ 'kr': #f97316,
+  /* KeywordType */ 'kt': #facc15,
+  /* Name */ 'n': #cbd5e1,
+  /* NameAttribute */ 'na': #111618,
   /* NameBuiltin */ 'nb': #19b9c4,
-  /* NameBuiltinPseudo */ 'bp': #ecbf6f,
-  /* NameClass */ 'nc': #ecbf6f,
+  /* NameBuiltinPseudo */ 'bp': #facc15,
+  /* NameClass */ 'nc': #facc15,
   /* NameConstant */ 'no': #41b0f5,
-  /* NameDecorator */ 'nd': #ecbf6f,
+  /* NameDecorator */ 'nd': #facc15,
   /* NameEntity */ 'ni': #41b0f5,
   /* NameException */ 'ne': #41b0f5,
   /* NameFunction */ 'nf': #41b0f5,
@@ -335,7 +330,7 @@ $code-highlight-color-map-dark: (
   /* LiteralNumberIntegerLong */ 'il': #db985c,
   /* LiteralNumberOct */ 'mo': #db985c,
   /* Operator */ 'o': #ecbf6f,
-  /* OperatorWord */ 'ow': #d371e3,
+  /* OperatorWord */ 'ow': #f97316,
   /* Comment */ 'c': #7e848f,
   /* CommentHashbang */ 'ch': #7e848f,
   /* CommentMultiline */ 'cm': #7e848f,

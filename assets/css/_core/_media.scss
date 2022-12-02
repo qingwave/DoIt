@@ -2,6 +2,9 @@
   .page {
     width: 56%;
   }
+  #header-desktop .header-wrapper {
+    width: 56%;
+  }
   #toc-auto {
     left: 78%;
     width: 22%;
@@ -20,6 +23,7 @@
 
   #header-desktop .header-wrapper {
     padding-right: 1rem;
+    width: 52%;
   }
 
   .search-dropdown.desktop {
@@ -44,6 +48,7 @@
 
   #header-desktop .header-wrapper {
     padding-left: 1rem;
+    width: 80%;
   }
 }
 

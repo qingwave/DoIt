@@ -75,7 +75,7 @@
 
     & a.prev,
     & a.next {
-      font-size: 1rem;
+      font-size: 0.875rem;
       font-weight: 400;
       @include transition(all 0.3s ease-out);
     }

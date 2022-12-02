@@ -21,10 +21,10 @@
     @include link(true, true);
 
     a {
-      // font-weight: bolder;
-      border-style: solid;
+      font-size: 0.875rem;
+      border: 1px solid;
       border-radius: 8px;
-      padding: 0rem 0.6rem;
+      padding: 0rem 0.5rem;
       display: inline-block;
     }
   }
@@ -50,6 +50,11 @@
     .author {
       font-size: 1.05rem;
     }
+  }
+
+  .post-meta-line {
+    font-size: 0.875rem;
+    color: $global-font-color-light;
   }
 
   .featured-image {
@@ -130,6 +135,10 @@
           color: $single-link-color-dark;
         }
       }
+
+      a {
+        background: none;
+      }
     }
 
     >h2>.header-mark::before {
@@ -153,6 +162,8 @@
 
     a {
       @include overflow-wrap(break-word);
+      color: $global-font-color;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(70%, transparent), color-stop(70%, rgba($single-link-color,0.5)));
 
       [theme=dark] & b,
       [theme=dark] & strong {

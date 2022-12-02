@@ -13,17 +13,6 @@
       padding-left: .8rem;
       list-style: none;
 
-      a:first-child::before {
-        content: "|";
-        font-weight: bolder;
-        margin-right: .5rem;
-        color: $single-link-color;
-
-        [theme=dark] & {
-          color: $single-link-color-dark;
-        }
-      }
-
       ul {
         padding-left: 1.5rem;
       }
@@ -92,7 +81,7 @@
     }
 
     a.active {
-      font-weight: bold;
+      // font-weight: bold;
       color: $single-link-color;
 
       [theme=dark] & {

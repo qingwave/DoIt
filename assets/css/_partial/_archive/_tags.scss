@@ -1,11 +1,12 @@
 .tag-cloud-tags {
-  margin: 10px 0;
+  margin: 2rem 0;
+  font-size: 1rem;
 
   @include link(true, true);
 
   a {
     border: solid;
-    padding: 0.4rem 0.8rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 8px;
     display: inline-block;
     position: relative;
