@@ -35,7 +35,7 @@
                     <i class="far fa-copyright fa-fw"></i>
                     {{- with .Site.Params.footer.since -}}
                         <span itemprop="copyrightYear">
-                            {{- if lt . now.Year }}{{ . }} - {{ end }}{{ now.Year -}}
+                            {{- if lt . now.Year }}{{ . }}-{{ end }}{{ now.Year -}}
                         </span>
                     {{- else -}}
                         <span itemprop="copyrightYear">{{ now.Year }}</span>

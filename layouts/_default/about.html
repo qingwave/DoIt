@@ -4,7 +4,7 @@
     {{- $params := .Scratch.Get "params" -}}
     {{- $profile := .Site.Params.home.profile -}}
 
-    <div class="home page">
+    <div class="home page about">
         {{- /* Profile */ -}}
         {{- if ne $profile.about false -}}
             {{- partial "home/profile.html" . -}}
@@ -21,7 +21,9 @@
 
         {{- /* Comment */ -}}
         {{- if $params.showComment -}}
-            {{- partial "comment.html" . -}}
+            <div class="about-comment">
+                {{- partial "comment.html" . -}}
+            </div>
         {{- end -}}
     </div>
 

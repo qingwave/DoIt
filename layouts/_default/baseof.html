@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title class="pjax-title">
-        {{- block "title" . }}{{ .Site.Title }}{{ end -}}
+        {{ if .Page.Title }}{{ .Page.Title }}
+        {{ else }}{{ .Site.Title }} {{end}}
     </title>
 
     {{- partial "head/meta.html" . -}}
