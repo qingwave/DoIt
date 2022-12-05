@@ -5,8 +5,8 @@
   @include link(true, true);
 
   a {
-    border: solid;
-    padding: 0.3rem 0.6rem;
+    border: 1px solid;
+    padding: 0.25rem 0.5rem;
     border-radius: 8px;
     display: inline-block;
     position: relative;

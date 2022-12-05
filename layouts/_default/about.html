@@ -4,10 +4,12 @@
     {{- $params := .Scratch.Get "params" -}}
     {{- $profile := .Site.Params.home.profile -}}
 
-    <div class="home page about">
+    <div class="single page about">
         {{- /* Profile */ -}}
         {{- if ne $profile.about false -}}
-            {{- partial "home/profile.html" . -}}
+            <div class="home">
+                {{- partial "home/profile.html" . -}}
+            </div>
         {{- end -}}
 
         {{- /* Content */ -}}

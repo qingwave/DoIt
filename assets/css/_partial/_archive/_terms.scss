@@ -1,6 +1,6 @@
 .categories-card, .author-card, .series-card {
-  margin: 0 auto;
-  margin-top: 3rem;
+  // margin: 0 auto;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +14,7 @@
     width: 45%;
     display: flex;
     align-items: flex-start;
-    margin-top: 2rem;
+    margin-top: 1rem;
     min-height: 10rem;
     padding: 0 2%;
     position: relative;

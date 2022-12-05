@@ -6,13 +6,13 @@ header {
   @include transition(box-shadow 0.3s ease);
 
   .logo {
-    min-height: 1.5em;
-    height: 1.5em;
+    min-height: 1.25em;
+    height: 1.25em;
     vertical-align: text-bottom;
   }
 
   .logo, .header-title-pre {
-    padding-right: .25rem;
+    padding-right: .125rem;
   }
 
   .header-title-inner {
@@ -20,7 +20,7 @@ header {
   }
 
   .header-title-post {
-    padding-left: .25rem;
+    padding-left: .125rem;
   }
 }
 
@@ -157,7 +157,7 @@ header {
 #header-desktop {
   display: block;
   position: fixed;
-  height: $header-height;
+  // height: $header-height;
   line-height: $header-height;
 
   [header-desktop=normal] & {
@@ -165,7 +165,7 @@ header {
   }
 
   .header-wrapper {
-    padding: 1rem 0.5rem 2rem 0.5rem;
+    padding: 2rem 0.5rem 1rem 0.5rem;
     margin: auto;
 
     .header-title {

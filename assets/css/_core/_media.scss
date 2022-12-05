@@ -1,3 +1,18 @@
+@media only screen and (min-width: 1441px) {
+  .page {
+    width: 56%;
+    max-width: 1080px;
+  }
+  #header-desktop .header-wrapper {
+    width: 56%;
+    max-width: 1080px;
+  }
+  #toc-auto {
+    left: 78%;
+    width: 22%;
+  }
+}
+
 @media only screen and (max-width: 1440px) {
   .page {
     width: 56%;
