@@ -186,16 +186,15 @@
   }
 
   .post-item {
-    font-size: 1.125rem;
+    font-size: 1rem;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     line-height: 2.5rem;
     // margin: .6rem 0;
   }
   
   .post-item-link {
-    width: 90%;
-    max-width: 90%;
+    max-width: 80%;
     overflow: hidden;
     text-align: left;
     text-overflow: ellipsis;
@@ -216,10 +215,9 @@
   
   .post-item-date {
     color: $global-font-color-light;
-    font-size: 1rem;
     text-align: left;
-    width: 10%;
-    min-width: 4rem;
+    margin-right: 2.5rem;
+    min-width: 3rem;
     [theme=dark] & {
       color: $global-font-secondary-color-dark;
     }
@@ -230,6 +228,7 @@
   }
 
   .group-title {
+    font-size: 1.875rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }

@@ -33,12 +33,10 @@
                         {{- $url = .RelPermalink -}}
                     {{- end -}}
                     <a class="menu-item{{ if $.IsMenuCurrent `main` . | or ($.HasMenuCurrent `main` .) | or (eq $.RelPermalink $url) }} active{{ end }}" href="{{ $url }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if (urls.Parse $url).Host }} rel="noopener noreffer" target="_blank"{{ end }}>
-                        {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
+                        {{- .Pre | safeHTML }}{{ .Name }}{{ .Post | safeHTML -}}
                     </a>
                 {{- end -}}
-                <!-- {{- if .Site.Menus.main -}}
-                    <span class="menu-item delimiter"></span>
-                {{- end -}} -->
+                
                 {{- if .Site.IsMultiLingual -}}
                     <a href="#" onclick="return false;" class="menu-item language" title="{{ T "selectLanguage" }}">
                         {{- .Language.LanguageName -}}
@@ -139,6 +137,7 @@
                 </div>
             {{- end -}}
             {{- $currentPage := . -}}
+
             {{- range .Site.Menus.main -}}
                 {{- $url := .URL | relLangURL -}}
                 {{- with .Page -}}
