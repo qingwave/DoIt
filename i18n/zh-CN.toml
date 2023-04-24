@@ -205,7 +205,7 @@ other = "赞赏"
 other = "页面没找到"
 
 [pageNotFoundText]
-other = "你来到了没有知识的荒漠 :)"
+other = "你来到了没有知识的荒漠:)"
 # === 404.html ===
 
 # === shortcodes/admonition.html ===
